@@ -1,0 +1,26 @@
+# CENG543 Q3 Requirements
+# Python 3.8+
+
+# Core ML frameworks
+torch>=2.0.0
+numpy>=1.21.0
+
+# NLP libraries
+transformers>=4.30.0
+datasets>=2.12.0
+sentencepiece>=0.1.99
+
+# Evaluation metrics
+sacrebleu>=2.3.0
+rouge-score>=0.1.2
+
+# Word embeddings
+gensim>=4.3.0
+
+# Utilities
+tqdm>=4.65.0
+matplotlib>=3.5.0
+pandas>=1.5.0
+
+# Optional: For faster training
+accelerate>=0.20.0

@@ -1,0 +1,26 @@
+# CENG543 Q5 - Interpretability and Error Analysis Requirements
+
+# Core deep learning
+torch>=2.0.0
+transformers>=4.30.0
+
+# Interpretability methods
+captum>=0.6.0          # Integrated Gradients
+lime>=0.2.0.1          # LIME explanations
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Data processing
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Metrics
+scikit-learn>=1.3.0
+
+# Progress tracking
+tqdm>=4.65.0
+
+# File handling
+jsonlines>=3.1.0
