@@ -1,0 +1,51 @@
+name: ceng543-nlp
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.10
+  - pip>=23.0
+
+  # Core Deep Learning (PyTorch from conda)
+  - pytorch>=2.0.0
+  - torchvision>=0.15.0
+  - torchaudio>=2.0.0
+  - pytorch-cuda=11.8  # For GPU support (change to cpu if no GPU)
+
+  # Scientific Computing
+  - numpy>=1.24.0
+  - pandas>=2.0.0
+  - scikit-learn>=1.3.0
+
+  # Visualization
+  - matplotlib>=3.7.0
+  - seaborn>=0.12.0
+
+  # Utilities
+  - tqdm>=4.65.0
+  - jupyter
+  - ipython
+
+  # Pip dependencies (packages not available via conda or better via pip)
+  - pip:
+      # Transformers & NLP
+      - transformers>=4.30.0
+      - datasets>=2.12.0
+      - tokenizers>=0.13.0
+      - sentence-transformers>=2.2.0
+
+      # Word Embeddings
+      - gensim>=4.3.0
+
+      # Evaluation Metrics
+      - sacrebleu>=2.3.0
+      - rouge-score>=0.1.2
+      - bert-score>=0.3.13
+
+      # Explainability
+      - lime>=0.2.0.1
+
+      # Optional: Accelerated training
+      # - accelerate>=0.20.0

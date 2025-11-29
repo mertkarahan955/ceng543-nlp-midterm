@@ -165,7 +165,7 @@ def build_glove_embedding_matrix(src_itos, glove_path, emb_dim=300):
             embedding_matrix[i] = torch.randn(emb_dim) * 0.01
             oov_count += 1
     
-    print(f"✅ Embedding matrix: {vocab_size} words, {oov_count} OOV ({100*oov_count/vocab_size:.1f}%)")
+    print(f"Embedding matrix: {vocab_size} words, {oov_count} OOV ({100*oov_count/vocab_size:.1f}%)")
     return embedding_matrix
 
 # =============================================================================
@@ -549,7 +549,7 @@ class TransformerDecoder(nn.Module):
 # =============================================================================
 # Load Dataset
 # =============================================================================
-print("📚 Loading IWSLT14 (English-French) dataset...")
+print("Loading IWSLT14 (English-French) dataset...")
 # Note: If you get "Dataset scripts are no longer supported" error,
 # you need to downgrade datasets: pip install "datasets<4.0.0"
 ds = load_dataset('IWSLT/iwslt2017', 'iwslt2017-en-fr')
@@ -557,7 +557,7 @@ train = ds['train']
 valid = ds['validation']
 test = ds['test']
 
-print("🔨 Building vocabulary...")
+print("Building vocabulary...")
 src_stoi, src_itos = build_vocab(train, 'en', args.max_vocab)
 trg_stoi, trg_itos = build_vocab(train, 'fr', args.max_vocab)
 SRC_VOCAB = len(src_itos)
@@ -573,7 +573,7 @@ with open(os.path.join(LOG_DIR, 'trg_itos.json'), 'w') as f:
 # =============================================================================
 # Build Model
 # =============================================================================
-print(f"🏗️  Building model: {args.model} with {args.emb_mode} embeddings...")
+print(f"  Building model: {args.model} with {args.emb_mode} embeddings...")
 
 if args.model == 'seq2seq':
     # === SEQ2SEQ MODEL ===
@@ -841,7 +841,7 @@ def evaluate_model(model_type, enc, dec, init_proj, dataloader, is_bert):
 # =============================================================================
 # Training Loop
 # =============================================================================
-print(f"\n🚀 Starting training: {args.epochs} epochs\n")
+print(f"\n Starting training: {args.epochs} epochs\n")
 
 best_bleu = 0.0
 metrics_csv = os.path.join(LOG_DIR, 'train_metrics.csv')
@@ -896,12 +896,12 @@ for epoch in range(1, args.epochs + 1):
         
         print(f"   ✅ Saved best model (BLEU: {best_bleu:.2f})")
 
-print(f"\n✅ Training complete! Best BLEU: {best_bleu:.2f}")
+print(f"\n Training complete! Best BLEU: {best_bleu:.2f}")
 
 # =============================================================================
 # Final Test Evaluation
 # =============================================================================
-print("\n📊 Running final test evaluation...")
+print("\n Running final test evaluation...")
 
 # Load best checkpoint
 ckpt = torch.load(os.path.join(CHECKPOINT_DIR, 'best.pt'), map_location=DEVICE)
@@ -916,7 +916,7 @@ if args.model == 'seq2seq':
 else:
     test_bleu, test_rouge_l = evaluate_model('transformer', enc, dec, None, test_dl, is_bert_mode)
 
-print(f"\n🎯 Final Test Results:")
+print(f"\n Final Test Results:")
 print(f"   BLEU: {test_bleu:.2f}")
 print(f"   ROUGE-L: {test_rouge_l:.4f}")
 
@@ -938,7 +938,7 @@ config = vars(args)
 with open(os.path.join(LOG_DIR, 'config.json'), 'w') as f:
     json.dump(config, f, indent=2)
 
-print(f"\n✨ All results saved to: {EXP_DIR}")
+print(f"\n All results saved to: {EXP_DIR}")
 print(f"   - Checkpoints: {CHECKPOINT_DIR}")
 print(f"   - Logs: {LOG_DIR}")
 print(f"   - Outputs: {OUTPUT_DIR}")

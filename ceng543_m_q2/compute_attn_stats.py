@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import numpy as np, os, glob, csv
 
-# Alt klasörleri belirle (senin mevcut yapına göre)
 attn_dirs = ["outputs/bahdanau", "outputs/luong", "outputs/scaleddot"]
 out_rows = []
 
@@ -34,7 +33,7 @@ with open("attn_stats_summary.csv", "w", newline="") as fh:
     for r in out_rows:
         w.writerow(r)
 
-print("✅ Saved attention statistics to attn_stats_summary.csv")
+print("xsSaved attention statistics to attn_stats_summary.csv")
 for r in out_rows:
     name = r[0]
     ent = f"{r[1]:.4f}" if r[1] is not None else "N/A"

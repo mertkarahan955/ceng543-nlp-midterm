@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 # run_all_q3_experiments.sh
-# Q3 için tüm deneyleri otomatik çalıştırır
+# Automatically runs all experiments for Q3
 
 set -euo pipefail
 
 echo "=========================================="
-echo "🚀 Q3 - Full Experiment Suite"
+echo "Q3 - Full Experiment Suite"
 echo "=========================================="
 
 # Check if training script exists
 if [ ! -f "train_q3_complete.py" ]; then
-    echo "❌ ERROR: train_q3_complete.py not found!"
+    echo "[ERROR] train_q3_complete.py not found!"
     exit 1
 fi
 
@@ -23,12 +23,12 @@ mkdir -p q3_results
 # =============================================================================
 echo ""
 echo "============================================"
-echo "📝 Q3.a: Seq2Seq + Embedding Paradigms"
+echo "Q3.a: Seq2Seq + Embedding Paradigms"
 echo "============================================"
 
 # Q3.a.1: Baseline (learnable embeddings)
 echo ""
-echo "🔹 Running: Seq2Seq + Learnable Embeddings"
+echo "[RUN] Seq2Seq + Learnable Embeddings"
 python train_q3_complete.py \
     --model seq2seq \
     --emb_mode learnable \
@@ -43,7 +43,7 @@ python train_q3_complete.py \
 
 # Q3.a.2: GloVe embeddings
 echo ""
-echo "🔹 Running: Seq2Seq + GloVe Embeddings"
+echo "[RUN] Seq2Seq + GloVe Embeddings"
 python train_q3_complete.py \
     --model seq2seq \
     --emb_mode glove \
@@ -57,7 +57,7 @@ python train_q3_complete.py \
 
 # Q3.a.3: DistilBERT embeddings
 echo ""
-echo "🔹 Running: Seq2Seq + DistilBERT Embeddings"
+echo "[RUN] Seq2Seq + DistilBERT Embeddings"
 python train_q3_complete.py \
     --model seq2seq \
     --emb_mode distilbert \
@@ -74,12 +74,12 @@ python train_q3_complete.py \
 # =============================================================================
 echo ""
 echo "============================================"
-echo "🤖 Q3.b: Transformer Architecture"
+echo "Q3.b: Transformer Architecture"
 echo "============================================"
 
 # Q3.b.1: Transformer + Learnable
 echo ""
-echo "🔹 Running: Transformer + Learnable Embeddings"
+echo "[RUN] Transformer + Learnable Embeddings"
 python train_q3_complete.py \
     --model transformer \
     --emb_mode learnable \
@@ -95,7 +95,7 @@ python train_q3_complete.py \
 
 # Q3.b.2: Transformer + GloVe
 echo ""
-echo "🔹 Running: Transformer + GloVe Embeddings"
+echo "[RUN] Transformer + GloVe Embeddings"
 python train_q3_complete.py \
     --model transformer \
     --emb_mode glove \
@@ -111,7 +111,7 @@ python train_q3_complete.py \
 
 # Q3.b.3: Transformer + DistilBERT
 echo ""
-echo "🔹 Running: Transformer + DistilBERT Embeddings"
+echo "[RUN] Transformer + DistilBERT Embeddings"
 python train_q3_complete.py \
     --model transformer \
     --emb_mode distilbert \
@@ -130,12 +130,12 @@ python train_q3_complete.py \
 # =============================================================================
 echo ""
 echo "============================================"
-echo "🔬 Q3.e: Ablation Study"
+echo "Q3.e: Ablation Study"
 echo "============================================"
 
 # Ablation 1: 2 layers, 4 heads
 echo ""
-echo "🔹 Ablation: 2 layers, 4 heads"
+echo "[RUN] Ablation: 2 layers, 4 heads"
 python train_q3_complete.py \
     --model transformer \
     --emb_mode learnable \
@@ -151,7 +151,7 @@ python train_q3_complete.py \
 
 # Ablation 2: 4 layers, 8 heads
 echo ""
-echo "🔹 Ablation: 4 layers, 8 heads"
+echo "[RUN] Ablation: 4 layers, 8 heads"
 python train_q3_complete.py \
     --model transformer \
     --emb_mode learnable \
@@ -167,7 +167,7 @@ python train_q3_complete.py \
 
 # Ablation 3: 6 layers, 8 heads
 echo ""
-echo "🔹 Ablation: 6 layers, 8 heads"
+echo "[RUN] Ablation: 6 layers, 8 heads"
 python train_q3_complete.py \
     --model transformer \
     --emb_mode learnable \
@@ -186,7 +186,7 @@ python train_q3_complete.py \
 # =============================================================================
 echo ""
 echo "============================================"
-echo "📊 Collecting Results"
+echo "Collecting Results"
 echo "============================================"
 
 python - <<EOF
@@ -232,22 +232,22 @@ with open('q3_results/summary.csv', 'w', newline='') as f:
     writer.writerows(results)
 
 print("\n" + "="*60)
-print("📊 Q3 RESULTS SUMMARY")
+print("Q3 RESULTS SUMMARY")
 print("="*60)
 print(f"{'Experiment':<35} {'Model':<12} {'Emb':<10} {'BLEU':>6} {'ROUGE-L':>8}")
 print("-"*60)
 for r in results:
     print(f"{r['exp_name']:<35} {r['model']:<12} {r['emb_mode']:<10} {r['test_bleu']:>6.2f} {r['test_rouge_l']:>8.4f}")
 print("="*60)
-print(f"\n✅ Summary saved to: q3_results/summary.csv")
+print(f"\n[SUCCESS] Summary saved to: q3_results/summary.csv")
 EOF
 
 echo ""
 echo "============================================"
-echo "✨ ALL Q3 EXPERIMENTS COMPLETE!"
+echo "ALL Q3 EXPERIMENTS COMPLETE!"
 echo "============================================"
 echo ""
-echo "📁 Results location:"
+echo "Results location:"
 echo "   - Experiments: q3_experiments/"
 echo "   - Logs: q3_results/"
 echo "   - Summary: q3_results/summary.csv"

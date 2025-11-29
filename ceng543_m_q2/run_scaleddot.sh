@@ -5,7 +5,7 @@ TRAIN_PY="./train_iwslt14_attention.py"
 EVAL_PY="./eval_metrics.py"
 
 if [ ! -f "$TRAIN_PY" ]; then
-  echo "ERROR: $TRAIN_PY bulunamadı. Çalışma dizininde olduğundan emin ol."
+  echo "ERROR: $TRAIN_PY couldn't found. Make sure you are in the correct directory."
   exit 1
 fi
 

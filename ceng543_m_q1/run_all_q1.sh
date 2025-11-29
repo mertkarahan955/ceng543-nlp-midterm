@@ -3,10 +3,6 @@ set -euo pipefail
 ROOT="$(pwd)"
 PYTHON=python
 
-# activate conda env if you want (uncomment and change name)
-# source ~/miniconda3/etc/profile.d/conda.sh
-# conda activate ceng543
-
 # Dataset selection: atis only
 DATASET=${1:-atis}
 if [ "${DATASET}" != "atis" ]; then

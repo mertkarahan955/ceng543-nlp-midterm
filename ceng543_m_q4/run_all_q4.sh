@@ -102,7 +102,7 @@ MINUTES=$(((ELAPSED % 3600) / 60))
 SECONDS=$((ELAPSED % 60))
 
 echo "=========================================="
-echo "✅ Q4 PIPELINE COMPLETE!"
+echo "[SUCCESS] Q4 PIPELINE COMPLETE!"
 echo "=========================================="
 echo ""
 echo "Total runtime: ${HOURS}h ${MINUTES}m ${SECONDS}s"

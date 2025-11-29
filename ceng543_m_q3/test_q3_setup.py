@@ -24,15 +24,15 @@ def run_test(model, emb_mode, exp_name):
     
     try:
         result = subprocess.run(cmd, check=True, capture_output=False, text=True)
-        print(f"✅ {exp_name} completed successfully")
+        print(f"{exp_name} completed successfully")
         return True
     except subprocess.CalledProcessError as e:
-        print(f"❌ {exp_name} failed with error code {e.returncode}")
+        print(f"{exp_name} failed with error code {e.returncode}")
         return False
 
 def main():
     print("\n" + "="*60)
-    print("🚀 Q3 SETUP VERIFICATION TEST")
+    print("Q3 SETUP VERIFICATION TEST")
     print("="*60)
     print("\nThis will run quick 2-epoch tests to verify your setup.")
     print("Full experiments will take much longer (12 epochs each).\n")
@@ -49,10 +49,10 @@ def main():
     
     # Summary
     print("\n" + "="*60)
-    print("📊 TEST SUMMARY")
+    print("TEST SUMMARY")
     print("="*60)
     for exp_name, success in results:
-        status = "✅ PASS" if success else "❌ FAIL"
+        status = "PASS" if success else "FAIL"
         print(f"{exp_name:<30} {status}")
     
     all_passed = all(success for _, success in results)
@@ -64,7 +64,7 @@ def main():
         print("  2. Or run individual: python train_q3_complete.py --model [MODEL] --emb_mode [MODE]")
         return 0
     else:
-        print("\n⚠️  Some tests failed. Please check:")
+        print("\nSome tests failed. Please check:")
         print("  - Dependencies installed: pip install -r requirements_q3.txt")
         print("  - CUDA available (if using GPU)")
         print("  - GloVe downloaded (if testing glove mode)")
